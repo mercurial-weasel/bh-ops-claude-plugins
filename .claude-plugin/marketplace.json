@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "dev",
-      "source": ".",
+      "source": "./plugins/dev",
       "description": "Dave's personal development skills for Claude Code"
     }
   ]
