@@ -1,9 +1,16 @@
 {
+  "name": "dave-plugins",
+  "owner": {
+    "name": "Dave"
+  },
+  "metadata": {
+    "description": "Dave's personal Claude Code plugins"
+  },
   "plugins": [
     {
       "name": "dev",
-      "description": "Dave's personal development skills for Claude Code",
-      "path": "."
+      "source": ".",
+      "description": "Dave's personal development skills for Claude Code"
     }
   ]
 }
