@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    {
+      "name": "dev",
+      "description": "Dave's personal development skills for Claude Code",
+      "path": "."
+    }
+  ]
+}
