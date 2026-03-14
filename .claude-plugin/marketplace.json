@@ -11,6 +11,11 @@
       "name": "dev",
       "source": "./plugins/dev",
       "description": "Dave's personal development skills for Claude Code"
+    },
+    {
+      "name": "gcloud-tools",
+      "source": "./plugins/gcloud-tools",
+      "description": "Google Cloud Platform deployment, billing, and cost management tools"
     }
   ]
 }
