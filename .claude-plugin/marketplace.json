@@ -16,6 +16,11 @@
       "name": "gcloud-tools",
       "source": "./plugins/gcloud-tools",
       "description": "Google Cloud Platform deployment, billing, and cost management tools"
+    },
+    {
+      "name": "proposal",
+      "source": "./plugins/proposal",
+      "description": "Blue Harbour workshop proposal generator — creates professional .docx proposals"
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "name": "bh-proposal-generator",
+  "version": "1.0.0",
+  "description": "Blue Harbour workshop proposal generator",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "docx": "^9.0.0"
+  }
+}

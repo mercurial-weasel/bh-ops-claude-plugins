@@ -1,0 +1,3 @@
+node_modules/
+plugins/proposal/proposal-generator/output/*.docx
+plugins/proposal/proposal-generator/output/.last-ref

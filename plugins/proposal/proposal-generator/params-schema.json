@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["client_name", "client_contact", "client_title", "workshop_title", "service_line"],
+  "properties": {
+    "client_name": { "type": "string", "description": "Client organisation name" },
+    "client_contact": { "type": "string", "description": "Primary contact name" },
+    "client_title": { "type": "string", "description": "Contact's job title" },
+    "client_email": { "type": "string", "description": "Contact's email address" },
+
+    "proposal_date": { "type": "string", "description": "Date on the proposal (default: today)" },
+    "proposal_ref": { "type": "string", "description": "Reference number (default: auto-incremented)" },
+    "proposal_expiry": { "type": "string", "description": "Expiry date (default: today + 30 days)" },
+
+    "workshop_title": { "type": "string", "description": "Full workshop title" },
+    "service_line": {
+      "type": "string",
+      "enum": ["capital_planning", "ai_agents", "reporting", "data_enablement", "generic"],
+      "description": "Service line — determines default content"
+    },
+    "workshop_duration": { "type": "string" },
+    "workshop_format": { "type": "string" },
+    "proposed_date": { "type": "string", "description": "Proposed workshop date or date range" },
+
+    "context": { "type": "string", "description": "2-3 sentences on the client's challenge" },
+    "pain_points": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 6 },
+    "objectives": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 6 },
+    "deliverables": { "type": "array", "items": { "type": "string" }, "minItems": 1, "maxItems": 6 },
+    "agenda": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["time", "item"],
+        "properties": {
+          "time": { "type": "string" },
+          "item": { "type": "string" },
+          "duration": { "type": "string" }
+        }
+      }
+    },
+
+    "workshop_fee": { "type": "string" },
+    "follow_on_indicative": { "type": "string" },
+
+    "bh_lead": { "type": "string" },
+    "bh_lead_title": { "type": "string" },
+    "bh_support": { "type": "string" },
+    "bh_email": { "type": "string" },
+    "bh_phone": { "type": "string" },
+    "bh_web": { "type": "string" }
+  },
+  "additionalProperties": false
+}
