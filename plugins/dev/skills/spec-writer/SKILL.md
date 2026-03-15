@@ -15,6 +15,27 @@ description: >
 
 Produces a single comprehensive specification document structured for parallel execution by Claude Code.
 
+## Usage
+
+```
+/dev:spec-writer
+```
+
+**When to use:** When you want to spec out a feature, system, or product before building it. Produces a structured implementation plan covering architecture, data models, API, frontend components, parallel agent tasks, and acceptance criteria.
+
+**What you'll need to provide:**
+- A description of what you want to build (can be brief or detailed)
+- Tech stack preferences (or let it ask you)
+- Scope boundaries (what's in / out)
+
+**What you get back:** A single markdown spec document ready for execution by Claude Code agents.
+
+**Examples:**
+```
+/dev:spec-writer I want to build a dashboard that shows real-time project status
+/dev:spec-writer
+```
+
 ---
 
 ## Inputs to Gather

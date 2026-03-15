@@ -12,6 +12,40 @@ allowed-tools:
 
 You are generating a Blue Harbour workshop proposal. The proposal generator lives at `plugins/proposal/proposal-generator/` relative to the dave-plugins repo root.
 
+## Usage
+
+```
+/proposal:generic
+/proposal:generic Capital planning workshop for Metro Transit Authority, contact Jordan Ellis PMO Head
+```
+
+**When to use:** When you need to generate a workshop proposal. Can parse structured input, a brief description, or even a raw email.
+
+**Service lines available:**
+- `capital_planning` — Capital Planning & Portfolio Intelligence
+- `ai_agents` — Intelligent Agent Services
+- `reporting` — Intelligent Reporting Platform
+- `data_enablement` — Data Enablement
+- `generic` — Custom / Advisory Services
+
+**What you'll need to provide (minimum):**
+- Client name, contact name, and contact title
+- Service line
+
+**What's auto-filled if omitted:**
+- Workshop title, context, pain points, objectives, deliverables (from service line defaults)
+- Proposal date (today), expiry (today + 30 days), ref number (auto-incremented)
+- Blue Harbour team details, branding, contact info
+
+**What you get back:** A professional `.docx` proposal in `plugins/proposal/proposal-generator/output/`.
+
+**Examples:**
+```
+/proposal:generic client: Northwind Utilities, contact: Alex Stanton, title: Head of Capital Planning, service: capital_planning
+/proposal:generic <paste an email from a prospect>
+/proposal:generic
+```
+
 ## Step 1 — Gather parameters
 
 Extract or ask for the following required fields:

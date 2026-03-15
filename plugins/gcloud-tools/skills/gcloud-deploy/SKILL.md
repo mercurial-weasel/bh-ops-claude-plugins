@@ -8,6 +8,27 @@ allowed-tools: Read, Glob, Grep, Bash, Edit, Write
 
 You are helping the user package their project for deployment to **Google Cloud Run** via **Cloud Build**.
 
+## Usage
+
+```
+/gcloud-tools:gcloud-deploy
+/gcloud-tools:gcloud-deploy my-service-name
+/gcloud-tools:gcloud-deploy dry-run
+```
+
+**When to use:** When you want to deploy a project to Cloud Run. Handles Dockerfile, cloudbuild.yaml, nginx config, IAM permissions, custom domains, and troubleshooting.
+
+**Supported project types:**
+- Static SPAs (Vite, React, Next.js static export) — builds with nginx
+- Node.js servers (Express, Fastify, Hono) — builds with node runtime
+
+**What you'll need to provide:**
+- GCP project ID (or create a new one)
+- Service name (defaults to package.json name)
+- Region preferences for registry and deployment
+
+**What you get back:** Generated deployment files (Dockerfile, cloudbuild.yaml, nginx.conf.template, .dockerignore) plus a step-by-step deployment guide.
+
 ## Arguments
 
 `$ARGUMENTS` — Optional flags or context, e.g. a service name, region, or "dry-run" to only preview files.

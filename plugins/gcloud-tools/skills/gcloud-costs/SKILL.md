@@ -9,6 +9,26 @@ allowed-tools: Bash
 
 You are helping the user understand their Google Cloud billing and costs.
 
+## Usage
+
+```
+/gcloud-tools:gcloud-costs
+/gcloud-tools:gcloud-costs cloud run costs
+/gcloud-tools:gcloud-costs this month
+/gcloud-tools:gcloud-costs blue-harbour-marketing
+```
+
+**When to use:** When you want to check GCP spending, billing, costs, budgets, or understand what you're being charged for.
+
+**What you can ask:**
+- Current month's costs (overall or by service/project)
+- Cloud Run, Artifact Registry, or Cloud Build usage
+- Budget status and alerts
+- Cost optimisation recommendations
+- Clean up unused resources
+
+**What you get back:** A formatted cost summary table with recommendations for savings.
+
 ## Arguments
 
 `$ARGUMENTS` — Optional: a project ID, date range, or specific query (e.g. "this month", "cloud run costs", "all projects").
