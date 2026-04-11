@@ -1,26 +1,36 @@
 {
   "name": "bh-plugins",
   "owner": {
-    "name": "Dave"
+    "name": "Dave Braendler"
   },
-  "metadata": {
-    "description": "Dave's personal Claude Code plugins"
-  },
+  "description": "Blue Harbour development skills and tools for Claude Code",
   "plugins": [
     {
       "name": "dev",
-      "source": "./plugins/dev",
-      "description": "Dave's personal development skills for Claude Code"
+      "source": {
+        "source": "git-subdir",
+        "url": "mercurial-weasel/bh-ops-claude-plugins",
+        "path": "plugins/dev"
+      },
+      "description": "Development skills — spec writing, code scanning"
     },
     {
       "name": "gcloud-tools",
-      "source": "./plugins/gcloud-tools",
-      "description": "Google Cloud Platform deployment, billing, and cost management tools"
+      "source": {
+        "source": "git-subdir",
+        "url": "mercurial-weasel/bh-ops-claude-plugins",
+        "path": "plugins/gcloud-tools"
+      },
+      "description": "Google Cloud deployment and cost management"
     },
     {
       "name": "proposal",
-      "source": "./plugins/proposal",
-      "description": "Blue Harbour workshop proposal generator — creates professional .docx proposals"
+      "source": {
+        "source": "git-subdir",
+        "url": "mercurial-weasel/bh-ops-claude-plugins",
+        "path": "plugins/proposal"
+      },
+      "description": "Blue Harbour proposal generator"
     }
   ]
 }
