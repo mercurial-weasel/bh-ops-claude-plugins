@@ -1,6 +1,6 @@
 {
   "name": "dev",
-  "version": "1.2.0",
-  "description": "Dave's personal development skills for Claude Code",
+  "version": "1.2.1",
+  "description": "Blue Harbour development skills for Claude Code",
   "skills": "./skills/"
 }
