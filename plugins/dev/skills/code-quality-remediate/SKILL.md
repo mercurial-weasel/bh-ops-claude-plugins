@@ -21,18 +21,22 @@ no stop condition. The rules below prevent that.
 
 ## Hard Rules (Non-Negotiable)
 
-1. **One plan per audit.** Never spawn a follow-up remediation plan from this skill.
-   If the plan can't reach the target, revise the target, don't create another plan.
+1. **One plan per audit cycle.** Never spawn a follow-up plan from within this skill.
+   If more improvement is needed after execution, run a fresh audit first (Step 6),
+   then start a new cycle: audit → triage → plan → execute. The constraint is on
+   plans chaining without re-assessment, not on doing multiple rounds. Each cycle
+   gets a fresh view of what actually changed.
 
-2. **Fixed exit score.** The plan declares a target score upfront (typically +1.5 to +2.0
-   from current). Execution stops when the target is reached OR when all phases complete,
-   whichever comes first. No moving goalposts.
+2. **Fixed exit score per cycle.** The plan declares a target score upfront (typically
+   +1.5 to +2.0 from current; up to +3.0 if starting below 5.0). Execution stops
+   when the target is reached OR when all phases complete, whichever comes first.
+   No moving goalposts within a cycle.
 
 3. **Plan cap: 1,500 lines.** If the plan exceeds this, the audit findings are too broad.
    Go back and triage the audit — pick the top 3-5 findings by impact, not all of them.
 
-4. **Max 4 phases.** Each phase must be independently shippable. If you need more than 4,
-   the scope is wrong.
+4. **Max 4 phases** (6 if starting below 5.0). Each phase must be independently
+   shippable. If you need more than the cap, the scope is wrong.
 
 5. **Two-plan rule.** If a domain already has 2 remediation plans within 14 days, the next
    action is a design review, not a third plan. The architecture is wrong, not the code.
@@ -88,7 +92,8 @@ whether the original reason still holds.
 
 Calculate a realistic exit score:
 
-- **Current score < 5.0**: Target +2.0 (infrastructure is missing)
+- **Current score < 5.0**: Target +3.0, up to 6 phases (infrastructure is missing,
+  genuine structural work needed — this is where capital-planning went 5.0→7.7)
 - **Current score 5.0-6.5**: Target +1.5 (patterns need establishing)
 - **Current score 6.5-7.5**: Target +1.0 (refinement phase)
 - **Current score > 7.5**: Target +0.5 (diminishing returns)
