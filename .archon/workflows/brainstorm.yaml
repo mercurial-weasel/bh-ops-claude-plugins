@@ -1,0 +1,6 @@
+name: brainstorm
+description: Brainstorm an idea into a validated design
+nodes:
+  - id: brainstorm
+    command: brainstorm
+    allowed_tools: [Read, Write, Glob, Grep, Bash]

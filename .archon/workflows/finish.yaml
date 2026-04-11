@@ -1,0 +1,5 @@
+name: finish
+description: Finish and clean up current development branch
+nodes:
+  - id: finish
+    command: finish-branch

@@ -1,0 +1,3 @@
+version: 1
+worktree:
+  baseBranch: master

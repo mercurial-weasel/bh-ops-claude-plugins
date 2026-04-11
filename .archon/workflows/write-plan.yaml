@@ -1,0 +1,24 @@
+name: write-plan
+description: Write plan, independent audit, then human review loop
+nodes:
+  - id: write-plan
+    command: write-plan
+    allowed_tools: [Read, Write, Glob, Grep, Bash]
+
+  - id: audit-plan
+    command: audit-plan
+    depends_on: [write-plan]
+    context: fresh
+    allowed_tools: [Read, Write, Glob, Grep, Bash]
+
+  - id: review-plan
+    command: review-plan
+    depends_on: [audit-plan]
+    allowed_tools: [Read, Write, Glob, Grep, Bash]
+    loop:
+      prompt: "Review the plan. Address this feedback: $LOOP_USER_INPUT"
+      until: APPROVED
+      interactive: true
+      gate_message: "Plan audit complete — see $ARTIFACTS_DIR/plan-audit.md. Paste feedback or type 'approved'."
+      max_iterations: 10
+      fresh_context: true
