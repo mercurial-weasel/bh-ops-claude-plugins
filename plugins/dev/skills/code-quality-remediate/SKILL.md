@@ -77,6 +77,11 @@ Not all findings are worth fixing. Triage by **impact × effort**:
 **Persistent issues** (flagged in 2+ prior audits) get auto-promoted one priority level.
 If something has been flagged 3 times and never fixed, it's P1 regardless of severity.
 
+**P4 re-confirmation:** If a "won't fix" item from a prior plan reappears in the current
+audit, it must be explicitly re-confirmed as P4 with updated rationale — not silently
+inherited. Agents will otherwise just carry forward the deferral without re-evaluating
+whether the original reason still holds.
+
 ---
 
 ## Step 3 — Set the Target
@@ -134,13 +139,18 @@ to confirm the dimension scores improved as expected.
 ### What makes a good phase:
 
 - **Phase 1** should always be infrastructure: error taxonomy, env centralisation,
-  Zod schemas at boundaries. These unblock everything else.
+  Zod schemas at boundaries. **Why first:** every subsequent phase produces code that
+  needs error handling and validated inputs. Without infra, Phases 2-4 introduce
+  the same gaps you're trying to fix.
 - **Phase 2** should be type safety: eliminating `as any`, `v.any()`, adding
-  validators. This is mechanical and high-impact.
+  validators. **Why second:** this is mechanical, high-impact, and gives the compiler
+  the information it needs to catch regressions from Phase 3 restructuring.
 - **Phase 3** should be structural: dependency direction fixes, module decomposition,
-  interface segregation. Higher effort, needs the type safety from Phase 2.
+  interface segregation. **Why third:** restructuring is safer when types are tight —
+  the compiler catches broken imports and shape mismatches immediately.
 - **Phase 4** (if needed) should be coverage: tests for the code changed in Phases 1-3,
-  not aspirational coverage goals.
+  not aspirational coverage goals. **Why last:** testing restructured code, not code
+  that's about to be moved.
 
 ---
 
@@ -150,9 +160,23 @@ Present the plan to the user for approval. On approval:
 
 1. Read the project's CLAUDE.md for non-negotiable rules
 2. Execute via subagent-driven development (one task per subagent)
-3. After each phase completes, run the relevant audit dimension checks
+3. After each phase completes, run the phase verification checks below
 4. If the target score is reached mid-plan, **stop**. Report remaining phases as
    "deferred — target reached" and move on.
+
+### Phase Verification (lightweight, not a full audit)
+
+Run only the checks relevant to what the phase changed:
+
+| Phase | What to verify | Commands |
+|-------|---------------|----------|
+| **1 — Infrastructure** | env centralised, AppError adopted, Zod at boundaries | `grep -rn "process\.env\." src/ convex/ \| grep -v "lib/env"` (should be 0), `grep -rn "catch.*: any" src/` (should be 0), `tsc --noEmit` |
+| **2 — Type safety** | as any eliminated, v.any() resolved, validators in place | `grep -rn "as any" src/ \| grep -v node_modules \| wc -l`, `grep -rn "v\.any()" convex/ \| wc -l`, `tsc --noEmit` |
+| **3 — Structure** | no reverse deps, files under 500 lines, clean imports | `grep -rn "from.*stores/" src/utils/`, `find src/ -name "*.ts" -o -name "*.tsx" \| xargs wc -l \| sort -rn \| head -5`, `tsc --noEmit` |
+| **4 — Coverage** | tests pass, new tests cover changed code | `npm test` or equivalent, check test file count vs previous |
+
+`tsc --noEmit` runs after every phase — it's the cheapest regression detector.
+If any verification fails, fix before proceeding to the next phase.
 
 ---
 
