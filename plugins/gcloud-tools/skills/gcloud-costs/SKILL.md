@@ -15,7 +15,7 @@ You are helping the user understand their Google Cloud billing and costs.
 /gcloud-tools:gcloud-costs
 /gcloud-tools:gcloud-costs cloud run costs
 /gcloud-tools:gcloud-costs this month
-/gcloud-tools:gcloud-costs my-project-id
+/gcloud-tools:gcloud-costs <project-id>
 ```
 
 **When to use:** When you want to check GCP spending, billing, costs, budgets, or understand what you're being charged for.
@@ -28,6 +28,8 @@ You are helping the user understand their Google Cloud billing and costs.
 - Clean up unused resources
 
 **What you get back:** A formatted cost summary table with recommendations for savings.
+
+**Billing account:** discovered at run time — see §0. The skill holds no account, project or region of its own.
 
 ## Arguments
 
@@ -147,13 +149,43 @@ Always present costs in a clear table format:
 - 15 old container images found — clean up to save storage costs
 ```
 
-## Known user context
+## 0. Establish context before running anything
 
-- **Primary billing account:** `XXXXXX-XXXXXX-XXXXXX` (Example Billing Account)
-- **Primary project:** `example-project` (project number: `PROJECT_NUMBER`)
-- **Region:** `REGION`
-- **Other projects on same billing:** Check with `gcloud billing projects list`
-- **gcloud CLI:** Available locally
+Do not assume a project, a billing account or a region. Resolve them in this order, and stop
+to confirm with the user if a step is ambiguous.
+
+**Project** — check the repo's `CLAUDE.md` for a `## Deployment` or `## GCP` section first. If
+it names a project, region or service, **use those values**; they are the project this codebase
+belongs to. Only if there is no such section, fall back to the machine default and confirm it:
+
+```bash
+gcloud config get-value project
+```
+
+**Critical:** always pass `--project <project-id>` explicitly. The machine default may not be
+the project for this codebase, and cost commands read whichever project they are given without
+complaint.
+
+**Billing account** — discover it rather than assuming:
+
+```bash
+gcloud billing projects describe PROJECT_ID --format='value(billingAccountName)'
+gcloud billing accounts list                      # if the above is empty
+gcloud billing projects list --billing-account=BILLING_ACCOUNT_ID   # sibling projects
+```
+
+**Region** — read it from the deployed services rather than guessing:
+
+```bash
+gcloud run services list --project PROJECT_ID --format='value(metadata.name,metadata.labels."cloud.googleapis.com/location")'
+```
+
+> [!note] Why this skill holds no identifiers
+> An earlier version hardcoded one organisation's project, project number, billing account and
+> region under a "Known user context" heading. Those are not secrets — a project ID grants
+> nothing, IAM does — so they do not belong in a secret store either. They are *context*, and
+> context belongs to the repository the skill is invoked in, not to the skill. Discovering them
+> makes the skill work for any project instead of silently reporting on the wrong one.
 
 ## Important rules
 
