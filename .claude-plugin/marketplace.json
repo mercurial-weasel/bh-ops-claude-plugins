@@ -19,11 +19,6 @@
       "name": "proposal",
       "source": "./plugins/proposal",
       "description": "Blue Harbour proposal generator"
-    },
-    {
-      "name": "obsidian",
-      "source": "./plugins/obsidian",
-      "description": "Obsidian vault skills — note creation, frontmatter schema and markdown conventions"
     }
   ]
 }

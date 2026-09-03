@@ -1,6 +1,0 @@
-{
-  "name": "obsidian",
-  "version": "1.0.0",
-  "description": "Obsidian vault skills - note creation, frontmatter schema and markdown conventions",
-  "skills": "./skills/"
-}
