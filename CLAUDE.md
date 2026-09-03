@@ -31,8 +31,13 @@ Google Cloud Platform tools — Cloud Run deployment packaging, billing/cost ana
 2. If it's a new plugin, create `plugins/<plugin-name>/.claude-plugin/plugin.json` and register it in `.claude-plugin/marketplace.json`
 3. Skill frontmatter requires: `name`, `description`, and optionally `allowed-tools`, `disable-model-invocation`
 
-## Known context
+## Context
 
-- **GCP billing account:** `01215E-8780EA-F709E1` (My Billing Account)
-- **Primary GCP project:** `blue-harbour-marketing`
-- **GCP region:** `australia-southeast1`
+This repo is a public plugin marketplace. **It must carry no real identifiers** — no GCP
+project ids or numbers, no billing account ids, no client or contact names, no email
+addresses, and no fee figures. Skills resolve those at runtime from the repository they are
+invoked in (see `gcloud-costs` step 0) or take them as arguments.
+
+An earlier version of this file pinned one organisation's billing account, project and region
+here. That is the class of thing that leaks from a public repo without anyone thinking of it
+as content.

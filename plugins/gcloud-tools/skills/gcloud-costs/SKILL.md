@@ -15,7 +15,7 @@ You are helping the user understand their Google Cloud billing and costs.
 /gcloud-tools:gcloud-costs
 /gcloud-tools:gcloud-costs cloud run costs
 /gcloud-tools:gcloud-costs this month
-/gcloud-tools:gcloud-costs blue-harbour-marketing
+/gcloud-tools:gcloud-costs my-project-id
 ```
 
 **When to use:** When you want to check GCP spending, billing, costs, budgets, or understand what you're being charged for.
@@ -132,14 +132,14 @@ Always present costs in a clear table format:
 ```
 ## GCP Cost Summary
 
-**Billing Account:** My Billing Account (01215E-8780EA-F709E1)
+**Billing Account:** Example Billing Account (XXXXXX-XXXXXX-XXXXXX)
 **Period:** March 2026
 
 | Project | Service | Cost (USD) |
 |---------|---------|-----------|
-| blue-harbour-marketing | Cloud Run | $0.00 |
-| blue-harbour-marketing | Artifact Registry | $0.12 |
-| blue-harbour-marketing | Cloud Build | $0.05 |
+| example-project | Cloud Run | $0.00 |
+| example-project | Artifact Registry | $0.12 |
+| example-project | Cloud Build | $0.05 |
 | **Total** | | **$0.17** |
 
 ### Recommendations:
@@ -149,9 +149,9 @@ Always present costs in a clear table format:
 
 ## Known user context
 
-- **Primary billing account:** `01215E-8780EA-F709E1` (My Billing Account)
-- **Primary project:** `blue-harbour-marketing` (project number: `72678620841`)
-- **Region:** `australia-southeast1`
+- **Primary billing account:** `XXXXXX-XXXXXX-XXXXXX` (Example Billing Account)
+- **Primary project:** `example-project` (project number: `PROJECT_NUMBER`)
+- **Region:** `REGION`
 - **Other projects on same billing:** Check with `gcloud billing projects list`
 - **gcloud CLI:** Available locally
 
