@@ -1,6 +1,6 @@
 {
   "name": "dev",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "Blue Harbour development skills for Claude Code",
   "skills": "./skills/"
 }

@@ -35,6 +35,14 @@ You are helping the user package their project for deployment to **Google Cloud 
 
 ## Step-by-step process
 
+### 0. Check for project-specific deployment config
+
+Before anything else, check `CLAUDE.md` for a `## Deployment` section. If it exists, it will have the GCP project, region, and service name already configured. **Use these values** — do not ask the user or rely on the default gcloud project.
+
+If no deployment config is found in CLAUDE.md, check the current gcloud project with `gcloud config get-value project` and confirm with the user that it's correct before proceeding.
+
+**Critical:** Always include `--project <project-id>` in all gcloud commands. The user's default gcloud project may not match the project for this codebase.
+
 ### 1. Analyze the project
 
 - Read `package.json` (or equivalent) to determine:
